@@ -51,7 +51,9 @@ const Hero = () => {
   };
 
   const handleDashboard = () => {
-    window.location.href = process.env.REACT_APP_DASHBOARD_URL || "http://localhost:3001";
+    const dashboardUrl = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard-ce0c.onrender.com";
+    console.log("Redirecting to dashboard:", dashboardUrl);
+    window.location.href = dashboardUrl;
   };
 
   if (isLoading) {
