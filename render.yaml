@@ -17,8 +17,9 @@ services:
         sync: false
 
   # Frontend Service
-  - type: static
+  - type: web
     name: zerodha-clone-frontend
+    env: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
     envVars:
@@ -28,8 +29,9 @@ services:
         value: https://zerodha-clone-dashboard.onrender.com
 
   # Dashboard Service
-  - type: static
+  - type: web
     name: zerodha-clone-dashboard
+    env: static
     buildCommand: cd dashboard && npm install && npm run build
     staticPublishPath: dashboard/build
     envVars:
