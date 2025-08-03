@@ -24,9 +24,9 @@ services:
     staticPublishPath: frontend/build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://zerodha-clone-backend.onrender.com
+        value: https://zerodha-clone-backend-ob79.onrender.com
       - key: REACT_APP_DASHBOARD_URL
-        value: https://zerodha-clone-dashboard.onrender.com
+        value: https://zerodha-clone-dashboard-ce0c.onrender.com
 
   # Dashboard Service
   - type: web
@@ -36,6 +36,6 @@ services:
     staticPublishPath: dashboard/build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://zerodha-clone-backend.onrender.com
+        value: https://zerodha-clone-backend-ob79.onrender.com
       - key: REACT_APP_FRONTEND_URL
-        value: https://zerodha-clone-frontend.onrender.com 
+        value: https://zerodha-clone-frontend-rgkn.onrender.com 
