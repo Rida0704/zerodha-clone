@@ -53,8 +53,8 @@ const LoginPage = () => {
         console.log("Redirecting to dashboard");
         setTimeout(() => {
           console.log("Redirecting now...");
-          // Redirect to dashboard instead of home page
-          window.location.href = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard-ce0c.onrender.com";
+          // Redirect to frontend home page after successful login
+          navigate("/home");
         }, 1500);
       } else {
         handleError(message);
