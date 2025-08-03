@@ -11,83 +11,49 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const { email, password } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setInputValue({
-      ...inputValue,
-      [name]: value,
-    });
+    setInputValue((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleError = (err) =>
-    toast.error(err, {
-      position: "bottom-left",
-    });
+    toast.error(err, { position: "bottom-left" });
+
   const handleSuccess = (msg) =>
-    toast.success(msg, {
-      position: "bottom-left",
-    });
+    toast.success(msg, { position: "bottom-left" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Attempting login with:", inputValue);
-      console.log("API endpoint:", API_ENDPOINTS.LOGIN);
-      console.log("Making request to:", API_ENDPOINTS.LOGIN);
-      
       const { data } = await axios.post(
         API_ENDPOINTS.LOGIN,
-        {
-          ...inputValue,
-        },
+        { ...inputValue },
         { withCredentials: true }
       );
-      console.log("Login response:", data);
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        console.log("Login successful, checking cookies...");
-        // Check if cookie was set
-        console.log("Current cookies:", document.cookie);
-        console.log("Redirecting to dashboard");
+
+      if (data.success) {
+        handleSuccess(data.message);
         setTimeout(() => {
-          console.log("Redirecting now...");
-          // Redirect to dashboard instead of home page
-          window.location.href = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard-ce0c.onrender.com";
+          // ✅ Redirect to homepage instead of dashboard
+          navigate("/");
         }, 1500);
       } else {
-        handleError(message);
+        handleError(data.message || "Login failed");
       }
     } catch (error) {
-      console.log("Login error:", error);
-      console.log("Error details:", {
-        message: error.message,
-        code: error.code,
-        response: error.response?.data,
-        status: error.response?.status,
-        headers: error.response?.headers
-      });
-      
+      console.error("Login error:", error);
+
       if (error.response) {
-        // Server responded with error status
-        console.log("Server responded with error:", error.response.status);
         handleError(error.response.data?.message || "Login failed");
       } else if (error.request) {
-        // Request was made but no response received
-        console.log("No response received from server");
-        handleError("Server is not responding. Please check if backend is running.");
+        handleError("Server is not responding. Please check your connection.");
       } else {
-        // Something else happened
-        console.log("Other error:", error.message);
         handleError("Login failed. Please try again.");
       }
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
+
+    setInputValue({ email: "", password: "" });
   };
 
   return (
@@ -99,9 +65,10 @@ const LoginPage = () => {
           <input
             type="email"
             name="email"
-            value={email}
+            value={inputValue.email}
             placeholder="Enter your email"
             onChange={handleOnChange}
+            required
           />
         </div>
         <div>
@@ -109,14 +76,15 @@ const LoginPage = () => {
           <input
             type="password"
             name="password"
-            value={password}
+            value={inputValue.password}
             placeholder="Enter your password"
             onChange={handleOnChange}
+            required
           />
         </div>
         <button type="submit">Submit</button>
         <span>
-          Don't have an account? <Link to={"/signup"}>Signup</Link>
+          Don't have an account? <Link to="/signup">Signup</Link>
         </span>
       </form>
       <ToastContainer />
