@@ -90,10 +90,10 @@ module.exports.Login = async (req, res, next) => {
        secure: process.env.NODE_ENV === 'production', // Secure in production
        sameSite: 'lax'
      });
-     
+    
      console.log("Cookie set successfully");
-     console.log("User logged in successfully:", user.email);
-     res.status(200).json({ message: "User logged in successfully", success: true });
+    console.log("User logged in successfully:", user.email);
+    res.status(200).json({ message: "User logged in successfully", success: true });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Internal server error", success: false });

@@ -1,5 +1,9 @@
 // API Configuration
-export const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://zerodha-clone-backend-ob79.onrender.com';
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+export const API_BASE_URL = isDevelopment
+  ? 'http://localhost:3002' // your local backend port
+  : process.env.REACT_APP_API_URL || 'https://zerodha-clone-backend-ob79.onrender.com';
 
 // API Endpoints
 export const API_ENDPOINTS = {
@@ -10,4 +14,4 @@ export const API_ENDPOINTS = {
   HOLDINGS: `${API_BASE_URL}/allHoldings`,
   POSITIONS: `${API_BASE_URL}/allPositions`,
   NEW_ORDER: `${API_BASE_URL}/neworder`,
-}; 
+};

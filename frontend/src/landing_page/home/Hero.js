@@ -65,25 +65,25 @@ const Hero = () => {
   }
 
   if (username) {
-    return (
-      <>
-        <div className="hero-section authenticated">
-          <div className="hero-content">
-            <h1>Welcome back, <span className="username">{username}</span>!</h1>
-            <p>Ready to trade? Access your dashboard to manage your portfolio.</p>
-            <div className="hero-buttons">
-              <button className="btn-primary" onClick={handleDashboard}>
-                Go to Dashboard
-              </button>
-              <button className="btn-secondary" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
+  return (
+    <>
+      <div className="hero-section authenticated">
+        <div className="hero-content">
+          <h1>Welcome back, <span className="username">{username}</span>!</h1>
+          <p>Ready to trade? Access your dashboard to manage your portfolio.</p>
+          <div className="hero-buttons">
+            <button className="btn-primary" onClick={handleDashboard}>
+              Go to Dashboard
+            </button>
+            <button className="btn-secondary" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
-        <ToastContainer />
-      </>
-    );
+      </div>
+      <ToastContainer />
+    </>
+  );
   }
 
   return (
