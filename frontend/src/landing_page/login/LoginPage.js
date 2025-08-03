@@ -50,11 +50,11 @@ const LoginPage = () => {
         console.log("Login successful, checking cookies...");
         // Check if cookie was set
         console.log("Current cookies:", document.cookie);
-        console.log("Redirecting to /home");
+        console.log("Redirecting to dashboard");
         setTimeout(() => {
           console.log("Redirecting now...");
-          // Force a page reload to ensure cookies are properly set
-          window.location.href = "/home";
+          // Redirect to dashboard instead of home page
+          window.location.href = process.env.REACT_APP_DASHBOARD_URL || "https://zerodha-clone-dashboard-ce0c.onrender.com";
         }, 1500);
       } else {
         handleError(message);
