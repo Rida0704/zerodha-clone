@@ -88,7 +88,8 @@ const Hero = () => {
   );
   }
 
-  
+  // Return null or empty div for non-authenticated users
+  return null;
 };
 
 export default Hero;
