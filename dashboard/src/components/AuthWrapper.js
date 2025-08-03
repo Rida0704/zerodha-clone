@@ -13,7 +13,12 @@ const AuthWrapper = ({ children }) => {
 
   useEffect(() => {
     const verifyAuth = async () => {
+      console.log("AuthWrapper: Starting authentication verification");
+      console.log("AuthWrapper: Available cookies:", document.cookie);
+      console.log("AuthWrapper: Token from cookies:", cookies.token);
+      
       if (!cookies.token) {
+        console.log("AuthWrapper: No token found, redirecting to login");
         setIsAuthenticated(false);
         setIsLoading(false);
         window.location.href = process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000/login";

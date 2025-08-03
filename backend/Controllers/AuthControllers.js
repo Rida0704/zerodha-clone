@@ -24,7 +24,8 @@ module.exports.Signup = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production', // Secure in production
-      sameSite: 'lax'
+      sameSite: 'none', // Allow cross-site cookies for different subdomains
+      domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost' // Share across Render subdomains
     });
     
     console.log("User created successfully:", user.email);
@@ -88,7 +89,8 @@ module.exports.Login = async (req, res, next) => {
        withCredentials: true,
        httpOnly: false,
        secure: process.env.NODE_ENV === 'production', // Secure in production
-       sameSite: 'lax'
+       sameSite: 'none', // Allow cross-site cookies for different subdomains
+       domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost' // Share across Render subdomains
      });
     
      console.log("Cookie set successfully");
