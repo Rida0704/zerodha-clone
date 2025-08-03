@@ -93,8 +93,8 @@ const Hero = () => {
           <h1>India's biggest stock broker by retail equity volumes</h1>
           <p>Trade with confidence on India's most trusted trading platform</p>
           <div className="hero-buttons">
-            <button className="btn-primary" onClick={handleSignup}>
-              Open Free Account
+            <button className="btn-primary" onClick={handleDashboard}>
+              Go to Dashboard
             </button>
             <button className="btn-secondary" onClick={handleLogin}>
               Login
