@@ -1,0 +1,43 @@
+services:
+  # Backend API Service
+  - type: web
+    name: zerodha-clone-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  # Frontend Service
+  - type: web
+    name: zerodha-clone-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://zerodha-clone-backend.onrender.com
+      - key: REACT_APP_DASHBOARD_URL
+        value: https://zerodha-clone-dashboard.onrender.com
+
+  # Dashboard Service
+  - type: web
+    name: zerodha-clone-dashboard
+    env: static
+    plan: free
+    buildCommand: cd dashboard && npm install && npm run build
+    staticPublishPath: dashboard/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://zerodha-clone-backend.onrender.com
+      - key: REACT_APP_FRONTEND_URL
+        value: https://zerodha-clone-frontend.onrender.com 
