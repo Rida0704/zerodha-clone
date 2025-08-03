@@ -12,7 +12,7 @@ import SupportPage from "./landing_page/support/SupportPage";
 import Navbar from "./landing_page/Navbar.js";
 import Footer from "./landing_page/Footer.js";
 import NotFound from "./landing_page/NotFound.js";
-import AuthGuard from "./components/AuthGuard.js";
+
 import { CookiesProvider } from "react-cookie";
 
 
@@ -25,13 +25,11 @@ root.render(
         {/* Landing page routes */}
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/home" element={
-          <AuthGuard>
-            <>
-              <Navbar />
-              <HomePage />
-              <Footer />
-            </>
-          </AuthGuard>
+          <>
+            <Navbar />
+            <HomePage />
+            <Footer />
+          </>
         } />
         <Route path="/signup" element={
           <>
