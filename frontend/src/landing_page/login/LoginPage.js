@@ -36,7 +36,7 @@ const LoginPage = () => {
         handleSuccess(data.message);
         setTimeout(() => {
           // ✅ Redirect to homepage instead of dashboard
-          navigate("/");
+          navigate("/home");
         }, 1500);
       } else {
         handleError(data.message || "Login failed");
