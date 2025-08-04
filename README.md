@@ -1,4 +1,4 @@
-# 📈 Zerodha Clone - Full Stack Trading Platform
+# 📈 Full Stack Trading Platform
 
 A comprehensive full-stack web application that replicates the core functionality of Zerodha, India's largest stock broker. This project demonstrates modern web development practices with a complete trading platform ecosystem.
 
